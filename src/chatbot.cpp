@@ -52,6 +52,23 @@ ChatBot::ChatBot(const ChatBot &source)
     _currentNode = source._currentNode;
 }
 
+ChatBot& ChatBot::operator=(const ChatBot &source)
+{
+    std::cout << "ChatBot Copy Assignment" << std::endl;
+
+    if (this == &source) return *this;
+
+    delete _image;
+    _image = new wxBitmap(*source._image);
+
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+
+    return *this;
+}
+
+
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
     // loop over all edges and keywords and compute Levenshtein distance to query
